@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NCalc;
+//using System.Random;
 
 public class GameController : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
 	void Start()
 	{
 		createEquation();
+		generateExpression();
 	}
 
 	// Update is called once per frame
@@ -46,6 +48,31 @@ public class GameController : MonoBehaviour
 			clearEquation();
 		}
 	}
+
+	Expression generateExpression()
+	{
+		int operand1;
+		int operand2;
+		List<string> operators = new List<string>() { "+", "-", "*", "/" };
+		//int result;
+
+		System.Random random = new System.Random();
+
+		operand1 = random.Next(0, 100);
+		operand2 = random.Next(0, 100);
+		string op = operators[random.Next(0, operators.Count)];
+
+		string tempEq = operand1.ToString() + op + operand2.ToString();
+
+		Expression exp = new Expression(tempEq);
+
+		Debug.Log(exp.ToString());
+
+		return exp;
+
+	}
+
+
 
 	public void updateEquation(int inx, string value)
 	{
